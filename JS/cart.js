@@ -42,10 +42,6 @@ function deleteData(i) {
   showProducts();
   // Update total
   getTotal(total);
-  // Update discount
-  // if (document.querySelector(".cart-discount").innerHTML !== "$") {
-  //   document.querySelector(".cart-discount").innerHTML = totalAfterDiscount(total,cartDiscount);
-  // }
 }
 function getTotal(total) {
   document.querySelector(".cart-subtotal").innerHTML = "$ " + total;
@@ -60,43 +56,35 @@ function getTotal(total) {
 }
 getTotal(total);
 // Check Coupon
-let titleContent, parContent, btnContent, buyBtnContent, cancelContent;
 document.querySelector(".coupon button").addEventListener('click', ()=> {
+  blurEffect('add');
   if(productTable.innerHTML !== "") {
     if(document.querySelector(".coupon input").value === 'coupon$') {
       // popup for discount
-        titleContent = "Congratulation";
-        parContent = `You have got <span>${cartDiscount}</span> discount`;
-        btnContent = "got it";
-        cancelContent = "Cancel";
-      cpnPopup();
+        document.querySelector(".discount-popup").classList.remove("hide");
     }else {
-      titleContent = null;
-      btnContent = null;
-      cancelContent = "OK";
-      parContent = "Plese Enter a Correct Coupon";
-      cpnPopup();
+      cpnPopup("Plese Enter a Correct Coupon","OK");
     }
   }else {
-    titleContent = null;
-    btnContent = null;
-    cancelContent = "OK";
-    parContent = "Please Add Your Cart";
-    cpnPopup()
+    cpnPopup("Please Add Your Cart", "OK");
   }
 });
+// Blur Effect 
+function blurEffect(option){
+  document.querySelectorAll(".blur").forEach((e) => {
+    if(option == 'add') {
+      e.classList.add("blur-effect");
+    }else {
+      e.classList.remove("blur-effect");
+    }
+  });
+}
 
-function cpnPopup() {
+function cpnPopup(parContent, cancelContent) {
   let overlay = document.createElement("div");
   overlay.className = "overlay";
   let couponPopup = document.createElement("div");
   couponPopup.className = "coupon-popup";
-  // Check if there title content
-  if(titleContent) {
-    let title = document.createElement("h3");
-    title.innerText = titleContent;
-    couponPopup.appendChild(title);
-  }
   let par = document.createElement("p");
   par.innerHTML = parContent;
   let cancel = document.createElement("button");
@@ -105,51 +93,37 @@ function cpnPopup() {
   // Append Element
   couponPopup.appendChild(par);
   couponPopup.appendChild(cancel);
-  // Check if there is btn Content
-  if(btnContent) {
-    let btn = document.createElement("button");
-    btn.className = "coupon-btn discount-btn";
-    btn.innerText = btnContent;
-    couponPopup.appendChild(btn);
-  }
-  // Checkout Products btn
-  if (buyBtnContent) {
-    let btn = document.createElement("button");
-    btn.className = "coupon-btn buy-btn";
-    btn.innerText = buyBtnContent;
-    couponPopup.appendChild(btn);
-  }
   overlay.appendChild(couponPopup);
   document.body.appendChild(overlay);
 }
 
 document.addEventListener("click", (e)=> {
   if(e.target.classList.contains("cancel")) {
+    blurEffect('remove');
     e.target.parentElement.parentElement.classList.add("hide");
+    document.querySelector("#coupon-inp").value = "";
   }
-  if(e.target.classList.contains("discount-btn")) {
+  if (e.target.classList.contains("btn-discount")) { 
+    if(document.querySelector("#discount-email").value) {
+      blurEffect('remove');
       document.querySelector(".cart-discount").innerHTML = totalAfterDiscount(
         total,
         cartDiscount
       );
       e.target.parentElement.parentElement.classList.add("hide");
+      document.querySelector("#coupon-inp").value = "";
+    }
   }
   if (e.target.classList.contains("checkout")) {
+    blurEffect('add');
     if(total !== 0) {
-      titleContent = null;
-      btnContent = null;
-      buyBtnContent = "Buy";
-      cancelContent = "Cancel";
-      parContent = "Your Cart Is Placed";
-      cpnPopup();
-      document.addEventListener('click', (e)=> {
-        if (e.target.classList.contains("buy-btn")) {
-          localStorage.product = '[]';
-          showProducts();
-          getTotal(total);
-          e.target.parentElement.parentElement.classList.add("hide");
-        }
-      })
+      cpnPopup("Your Cart Is Placed","OK");
+      localStorage.product = '[]';
+      // Update Products
+      showProducts();
+      // update total
+      getTotal(total);
+      e.target.parentElement.parentElement.classList.add("hide");
     }
   }
 });

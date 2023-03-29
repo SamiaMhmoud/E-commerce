@@ -10,7 +10,23 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <header id="header">
+    <div class="popup-container">
+        <div class="discount-popup hide">
+            <div class="close ">
+                <i class="fa fa-times cancel"></i>
+            </div>
+            <h4>Enter your email and get</h4>
+            <h1><span>10%</span> Off</h1>
+            <h4>with order of $25 or more</h4>
+            <div class="email">
+                <input type="email" name="mail" id="discount-email" placeholder="Enter your email here">
+                <button type="submit"class="btn-discount">get my <span>10%</span>  off</button>
+                <a href="#" class="cancel">No thanks</a>
+            </div>
+            <p>first time registerants only. $10 on $25+ order, and entering your email also makes you eligiblr to receive future promotional emails.</p>
+        </div>
+    </div>
+    <header id="header" class="blur">
         <a href="#" class="logo"><img src="Img/background/logo.png" alt=""></a>
         <ul id="navbar">
             <li><a href="index.html">Home</a></li>
@@ -129,7 +145,7 @@
         </div>
     </section>
     </div>
-    <div class="container">
+    <div class="container blur">
         <section id="page-header"class="about-header">
             <h2>#Cart</h2>
             <p>Save more with coupons & up to 70% off!</p>
@@ -184,7 +200,7 @@
             </div>
         </div>
     </div>
-    <section id="newsletter" class="section-p1 section-m1">
+    <section id="newsletter" class="section-p1 section-m1 blur">
         <div class="news-text">
             <h4>Sign up for Newsletters</h4>
             <p>Get E-mail updates about our latest shop and <span>special offer.</span></p>
@@ -194,7 +210,7 @@
             <button class="main-button">Sign Up</button>
         </form>
     </section>
-    <footer class="section-p1">
+    <footer class="section-p1 blur">
         <div class="col">
             <img src="Img/background/logo.png" alt="" class="logo">
             <h4>Contact</h4>
