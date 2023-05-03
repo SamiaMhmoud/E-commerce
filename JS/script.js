@@ -8,15 +8,6 @@ let navbar = document.querySelector("#navbar"),
     price = document.querySelector(".sproduct .pro-details h2"),
     productTitle = document.querySelector(".sproduct .pro-details h4"),
     smallImg = document.querySelector(".small-images");
-// Navbar open & close
-bar.onclick = ()=> {
-    console.log(navbar)
-    navbar.classList.add("open");
-}
-close.onclick = ()=> {
-    console.log(navbar)
-    navbar.classList.remove("open");
-}
 let proPrice,
     proTitle,
     proImg,
@@ -148,14 +139,18 @@ cart.forEach((e) => {
     });
 // Stor data at click on Single product button
 document.querySelector(".sproduct .sec-button").onclick = ()=> {
-    let proObj= {
-                proPrice: proPrice,
-                proTitle: proTitle,
-                proImg: proImg,
-                proSize: proSize,
-                proNumber: proNumber
-            }
-    productData.push(proObj);
-    // Set data in local storage
-    localStorage.setItem("product", JSON.stringify(productData));
+  let proObj = {
+    proPrice: proPrice,
+    proTitle: proTitle,
+    proImg: proImg,
+    proSize: proSize,
+    proNumber: proNumber,
+  };
+  productData.push(proObj);
+  // Set data in local storage
+  localStorage.setItem("product", JSON.stringify(productData));
+  // Product count in bag icon
+  document.querySelectorAll(".pro-count").forEach((e) => {
+    e.dataset.count = Number(e.dataset.count) + 1;
+  });
 }

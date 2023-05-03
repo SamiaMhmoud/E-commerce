@@ -7,6 +7,10 @@ let cartTotal = document.querySelector(".cart-total");
 function showProducts(){
   if (localStorage.product != undefined) {
     products = JSON.parse(localStorage.product);
+    // Product count in bag icon
+    document.querySelectorAll(".pro-count").forEach((e) => {
+      e.dataset.count = products.length;
+    });
       let table = "";
       total =0;
       for (let i = 0; i < products.length; i++) {
@@ -27,7 +31,6 @@ function showProducts(){
           total +=
             Number(products[i].proPrice.replace("$", "")) *
             products[i].proNumber;
-          // getTotal(total);
       }
       productTable.innerHTML = table;
   } else products = [];

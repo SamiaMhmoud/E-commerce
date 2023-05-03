@@ -164,20 +164,33 @@ header {
     color: var(--main-color);
 }
 #navbar li a.active::after,
+.mobile a.active::after,
 #navbar li:not(:last-child) a::after {
     content: '';
     position: absolute;
     bottom: -4px;
-    left: 20px;
     width: 0px;
     height: 3px;
     background-color: var(--main-color);
     border-radius: 6px;
     transition: 0.3s;
 }
+#navbar li a:not(.cart)::after {
+    left: 20px;
+}
+#navbar li a.cart.active::after,
+a.cart:hover::after,
+.mobile a.active::after {
+    left: 0 !important;
+}
 #navbar li a.active::after,
 #navbar li a:hover::after {
     width: 35%;
+}
+#navbar li a.cart.active::after,
+#navbar li a.cart:hover::after,
+.mobile a.active::after {
+    width: 75%;
 }
 .mobile {
     display: none;
@@ -193,6 +206,24 @@ header {
     left: 30px;
     font-size: 21px;
     display: none;
+}
+.pro-count {
+    position: relative;
+    font-size: 21px !important;
+}
+.pro-count::before {
+    content: attr(data-count);
+    position: absolute;
+    background-color: var(--main-color);
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    top: 8px;
+    right: -15px;
+    color: #fff;
+    text-align: center;
+    font-size: 12px;
+    line-height: 18px;
 }
 #landing {
     background-image: url(../Img/background/01.jpg);
@@ -706,7 +737,7 @@ footer .install img {
     padding: 80px 0 0;
 }
 #blog .blog-box .blog-img {
-    min-width: 400px;
+    min-width: 300px;
     max-width: 450px;
 }
 #blog .blog-box .blog-img img {
@@ -972,7 +1003,7 @@ footer .install img {
 .cart-add .coupon input {
     padding: 12px 20px;
     outline: none;
-    width: 60%;
+    width: 65%;
     margin-right: 10px;
     border: 1px solid #d8dfd7;
 }
@@ -1153,9 +1184,6 @@ footer .install img {
     #proditails .pro-details h4 {
         padding: 10px 0;
     }
-    #proditails.section-p1 {
-        padding: 40px 70px;
-    } 
     #proditails .pro-details span {
         line-height: 1.5;
     }
@@ -1170,6 +1198,16 @@ footer .install img {
     }
     .contact-details .details{
         width: 100%;
+    }
+    .cart-add {
+        flex-direction: column;
+    }
+    .cart-add .subtotal,.cart-add .coupon {
+        width: 100%;
+    }
+    .cart-add button.sec-button {
+        padding: 10px 15px;
+        font-size: 15px;
     }
 }
 @media(max-width: 786px) {
@@ -1186,6 +1224,7 @@ footer .install img {
         background-color: #E3E6F3;
         box-shadow: 0 40px 60px rgba(0,0,0,0.1);
         padding: 65px 0 0 10px;
+        z-index: 99999;
     }
     #navbar li {
         margin-bottom: 25px;
@@ -1202,6 +1241,19 @@ footer .install img {
     .mobile a, .mobile i {
         color: #1a1a1a;
         cursor: pointer;
+    }
+    .mobile a.active i{
+        color: var(--main-color) !important;
+    }
+    .mobile i#bar {
+        margin-left: 10px;
+    }
+    #landing h1 {
+        font-size: 48px;
+        line-height: 12px;
+    }
+    #landing h2 {
+        font-size: 42px;
     }
     #banner h4 {
         font-size: 19px;
@@ -1228,9 +1280,6 @@ footer .install img {
     #proditails .pro-details h4 {
         padding: 10px 0;
     }
-    #proditails.section-p1 {
-        padding: 40px 70px;
-    } 
     #proditails .pro-details h4 {
         margin-top: 20px;
     }
@@ -1240,10 +1289,14 @@ footer .install img {
     #proditails .pro-image {
     width: 370px;
     }
+    .cart-add .coupon input {
+        font-size: 13px;
+    }
 }
 @media(max-width: 540px) {
     #landing h1 {
-        font-size: 49px;
+        font-size: 45px;
+        line-height: 10px;
     }
     #landing h2 {
         font-size: 40px;
