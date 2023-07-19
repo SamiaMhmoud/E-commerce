@@ -153,4 +153,5 @@ document.querySelector(".sproduct .sec-button").onclick = ()=> {
   document.querySelectorAll(".pro-count").forEach((e) => {
     e.dataset.count = Number(e.dataset.count) + 1;
   });
+  alert("Your Product Added Succese");
 }

@@ -1,5 +1,5 @@
 let total = 0;
-let cartDiscount = '40%';
+let cartDiscount = '10%';
 let products;
 let productTable = document.querySelector(".pro-cart table tbody");
 let cartTotal = document.querySelector(".cart-total");
@@ -62,7 +62,7 @@ getTotal(total);
 document.querySelector(".coupon button").addEventListener('click', ()=> {
   blurEffect('add');
   if(productTable.innerHTML !== "") {
-    if(document.querySelector(".coupon input").value === 'coupon$') {
+    if(document.querySelector(".coupon input").value === 'coupon') {
       // popup for discount
         document.querySelector(".discount-popup").classList.remove("hide");
     }else {
@@ -107,8 +107,8 @@ document.addEventListener("click", (e)=> {
     document.querySelector("#coupon-inp").value = "";
   }
   if (e.target.classList.contains("btn-discount")) { 
-    if(document.querySelector("#discount-email").value) {
-      blurEffect('remove');
+    if (document.querySelector("#discount-email").value) {
+      blurEffect("remove");
       document.querySelector(".cart-discount").innerHTML = totalAfterDiscount(
         total,
         cartDiscount

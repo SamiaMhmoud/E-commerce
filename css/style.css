@@ -11,6 +11,27 @@
     padding: 0;
     box-sizing: border-box;
 }
+html {
+    scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar {
+    width: 0.6vw;
+}
+
+html::-webkit-scrollbar-thumb {
+    background: linear-gradient(transparent, var(--main-color),var(--main-color));
+    border-radius: 6px;
+    height: 10vw;
+}
+
+html::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(transparent, #027887, #0e8b9b);
+}
+
+html::-webkit-scrollbar-track {
+    border-radius: 6px;
+}
 h1 {
     font-size: 55px;
     line-height: 64px;
@@ -1137,6 +1158,14 @@ footer .install img {
     color: #fff;
 }
 /* Media Quiry */
+@media(max-width: 1220px) {
+    .form-details form {
+        width: 100%;
+    }
+    .form-details .pepole {
+        display: none;
+    }
+}
 @media(max-width: 991px) {
     #sm-banner {
         display: grid;
@@ -1207,7 +1236,11 @@ footer .install img {
     }
     .cart-add button.sec-button {
         padding: 10px 15px;
-        font-size: 15px;
+        font-size: 25px;
+    }
+    .contact-details .map {
+        width: 100%;
+        margin-top: 15px;
     }
 }
 @media(max-width: 786px) {
